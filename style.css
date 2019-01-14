@@ -1,0 +1,105 @@
+body {
+    box-sizing: border-box;
+}
+
+.window {
+    position: absolute;
+    top: 60px;
+    left: 40%;
+}
+
+h1 {
+    text-align: center;
+    letter-spacing: 2px;
+    font-weight: 200;
+}
+#go {
+    width: 50px;
+    height: 30px;
+    border-radius: 20%;
+    border: 2px solid whitesmoke;
+    background: green;
+    font-size: 1rem;
+}
+
+.input {
+    background: whitesmoke;
+    border: 2px solid green;
+    border-radius: 10%;
+    width: 170px;
+    height: 30px;
+    color: black;
+    font-size: 14px;
+}
+
+#select {
+    background: whitesmoke;
+    height: 30px;
+    width: 100px;
+    color: black;
+    margin: 10px;
+    border: 2px solid green;
+    font-size: 1rem;
+    border-radius: 10%;
+}
+.results {
+    display: flex;
+    flex-direction: column;
+    top: 300px;
+}
+
+/* .result {
+    width: 300px;
+    height: 300px;
+} */
+
+.images {
+    width: 200px;
+    height: 200px;
+    margin: 20px;
+}
+
+.title {
+    font-size: 50px;
+    font-color: black;
+    display: block;
+}
+
+#more {
+    display: none;
+    /* position: absolute; */
+    bottom: 10px;
+    left: 40%;
+    background: gray;
+    width: 20%;
+    height: 20px;
+    cursor: pointer;
+    border-radius: 10px;
+    /*     z-index: 1; */
+
+    /* position: fixed; */
+    /*     display: flex;
+justify-content: center;
+align-items: center; */
+}
+
+.searchresult {
+    position: absolute;
+    top: 160px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    border: 1px green solid;
+    margin: 10px 100px;
+    box-shadow: 2px 10px 2px darkgray;
+}
+
+a:hover {
+    background: green;
+    /* transition: linear 2s */
+}

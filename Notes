@@ -1,0 +1,169 @@
+Artist & Album (Not songs and playlist)
+You can use Dropdown, Radio Button etc.
+
+
+
+search query in request: q (or "query") = madonna & type = artist (or "album" -> strict naming)
+
+
+
+"More" Button - Another request happens (Pagination)
+
+
+
+
+$("#go").on("click", function(e) {
+$.get("https.elegant")
+
+$.ajax({
+url: "elegant croissant",
+data: {
+q: $("input"}.val(),
+type: $("select").val
+},
+success: function(data) {
+data = data.artists || data.albums;
+
+var resultHtml =""
+for() {
+
+resultHtml += "<div class="result">"
+resultHtml += (example: '<img src="' data.items[i].images[0].url'"'')
+resultHtml +=
+resultHtml += </div>;
+
+// for error cases
+if (data.items.length == 0) {}
+}
+
+$("#results").html(resultHtml);
+}
+})
+})
+
+
+We are interested in three things from the return:
+
+- external URL.spotify
+- Item name
+- Item image
+
+
+
+
+---loop through data.items (or data.items.forEach)
+
+If there is no Image, you have to prepare for it otherwise you will get an error ( image == 0):
+Option 1: If no image, throw out whole results
+Option 2: Use a default image to show instead
+
+if(data.items[i].images[0]) {
+// means it's empty
+} else { // use default jpg}
+
+Surpress "More" button if no more results are available (Spotify default request limit is 20). (Property "Total" is returned in JSON, "Next" shows if there is more -> Lets you decide if "More" button is needed)
+Option A: Hide it if no more results
+Option B: Add when you are showing the results and there are more results than can be seen on one page.
+
+
+data.next == null if no more results, otherwise there is a new URL in "next"
+
+"More" button needs clickhandler -> Make a new ajax request like above, expect the URl shoudl be elegant croissant
+
+(function() {
+var nextUrl;
+
+// in AJAX request success function
+nextUrl = data.next;
+if (nextUrl) {
+nextUrl = nextUrl.replace( "api.spotify","elegant.croissant");
+// show the more button
+
+// In highest scope;
+}
+
+})
+
+Use $("results").append() not .html
+
+
+"Go" Button
+
+When you are adding the HTML, for "Go" you create a new lis, hence .html(). For "More" you use .append()
+
+$("result").html()
+
+
+
+
+//////////////////// Infinite Scroll
+
+Results automatically appear when the user scrolls to the bottom of the page
+
+
+
+Only use infinite scroll when ?scroll=infinite is in URl.
+Otherwise ues "More" Button
+
+1. How to read the URL to see if a query string exists?
+
+location.search
+
+
+// Goes into the success function of your first ajax request.
+
+if (location.search.indexOf("scroll=infinite" > -1)) {   //indexOf return the position of the string in the search query, otherwise returns "-1"
+ // trigger infinite scroll function
+}
+
+// event for if the user is at the bottom of the page
+
+var timeoutId;
+
+
+function checkInfiniteScroll() {
+// scrollTop: How many pixels down from the top of the page has the user scrolled
+// document height: How big is the page? from Top to the bottom of scroll
+// window height: How big is the actual browser window?
+
+// $(document).scrollTop();
+// $(document).height();
+// $(window).height();
+
+clearTimeout(timeoutId);
+
+if ($(window).height() + $(document).scrollTop(); >= $(document).height(); - 500) {
+ // lets get more results by calling a second AJAX request
+} else {
+timeoutId = setTimeout(checkInfiniteScroll, 3000)
+} ;
+
+}
+
+
+// For demo purpose
+checkInfiniteScroll();
+
+
+// you have to run the checkInfiniteScroll function on both AJAX calls
+
+First AJAX call -> In the if of checkInfiniteScroll -> Make the second AJAX calls
+
+
+
+Steps
+1. Should I do the inifite scroll -> Check if infinite Scroll is in query string
+
+2. Check if the user is at the bottom of the page -> If yes, do the AJAX call to get more results. If no, check again in 3 seconds, to see if user is at bottom of page.
+
+
+
+Font: Helvetica Neue;
+Letter-spacing; 2px;
+font-weight: 200;
+
+
+
+To call same click Event for Go and More button
+
+Either use .append for both on resultHtml or use e.target to differentiate the buttons. 
